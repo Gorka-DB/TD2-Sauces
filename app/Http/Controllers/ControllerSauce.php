@@ -16,12 +16,17 @@ class ControllerSauce extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'userId' => 'required|integer', // par la suite on pourrait améliorer en faisant en sorte que celà soit l'id de l'utilisateur connecté
             'name' => 'required|string',
             'manufacturer' => 'required|string',
             'description' => 'required|string',
             'mainPepper' => 'required|string',
             'imageUrl' => 'required|url',
             'heat' => 'required|integer|min:1|max:10',
+            'likes' => 'integer',
+            'dislikes' => 'integer',
+            'usersLiked' => 'array',
+            'usersDisliked' => 'array'
         ]);
 
         $sauce = Sauce::create($validatedData);
