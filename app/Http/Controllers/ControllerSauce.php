@@ -10,64 +10,63 @@ class ControllerSauce extends Controller
     public function index()
     {
         $sauces = Sauce::all();
-        return view('sauces.index', compact('sauces'));
+        return response()->json($sauces);
     }
 
-    public function create(Request $request){
-        $request->validate([
-            'name' => 'required',
-            'manufacturer' => 'required',
-            'description' => 'required',
-            'mainPepper' => 'required',
-            'imageUrl' => 'required',
-            'heat' => 'required'
-        ]);
-        Sauce::create($request->all());
-        return redirect()->route('sauces.index')->with("success", "Sauce ajoutée");
-    }
-
-    public function store(Request $request){
-        $sauce = Sauce::find($request->id);
-        return view('#', compact('sauce'));
-    }
-
-    public function show($id){
-        $sauce = Sauce::find($id);
-        return view('sauces.show', compact('sauce'));
-    }
-
-    public function edit($id){
-        $sauce = Sauce::find($id);
-        return view('sauces.edit', compact('sauce'));
-    }
-
-    public function update(Request $request, $id){
-        if ($request->validate([
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
             'name' => 'required|string',
             'manufacturer' => 'required|string',
             'description' => 'required|string',
             'mainPepper' => 'required|string',
             'imageUrl' => 'required|url',
-            'heat' => 'required|min:1|max:10',
-//            'likes',
-//            'dislikes',
-//            'usersLiked',
-//            'usersDisliked',
-        ]))
-        {
-            $sauce = Sauce::find($id);
-            $sauce->update($request->all());
-            return redirect()->route('sauces.show', $sauce->id)->with("success", "Sauce modifiée");
-        }
-        else{
-            return redirect()->route('sauces.index')->with("error", "Sauce non modifiée");
-//            var_dump($request->all());
+            'heat' => 'required|integer|min:1|max:10',
+        ]);
+
+        $sauce = Sauce::create($validatedData);
+        return response()->json($sauce, 201);
+    }
+
+    public function show($id)
+    {
+        $sauce = Sauce::find($id);
+        if ($sauce) {
+            return response()->json($sauce);
+        } else {
+            return response()->json(['error' => 'Sauce not found'], 404);
         }
     }
 
-    public function destroy(Sauce $sauce){
-        $sauce->delete();
-        return redirect()->route('sauces.index')->with("success", "Sauce supprimée");
+    public function update(Request $request, $id)
+    {
+        $sauce = Sauce::find($id);
+        if ($sauce) {
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'manufacturer' => 'required|string',
+                'description' => 'required|string',
+                'mainPepper' => 'required|string',
+                'imageUrl' => 'required|url',
+                'heat' => 'required|integer|min:1|max:10',
+            ]);
+
+            $sauce->update($validatedData);
+            return response()->json($sauce);
+        } else {
+            return response()->json(['error' => 'Sauce not found'], 404);
+        }
+    }
+
+    public function destroy($id)
+    {
+        $sauce = Sauce::find($id);
+        if ($sauce) {
+            $sauce->delete();
+            return response()->json(['message' => 'Sauce deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Sauce not found'], 404);
+        }
     }
 
 
