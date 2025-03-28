@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "081ac6eb-5fe1-46a4-ae2a-63c0f996e9fc",
+		"name": "TD2-Sauces",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43495524",
+		"_collection_link": "https://gorkadb.postman.co/workspace/Gorka-DB's-Workspace~35990e2b-9503-4f9e-8f19-08820d966744/collection/43495524-081ac6eb-5fe1-46a4-ae2a-63c0f996e9fc?action=share&source=collection_link&creator=43495524"
+	},
+	"item": [
+		{
+			"name": "localhost:8000/api/sauces/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/sauces/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sauces",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/sauces/140",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/sauces/140",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"sauces",
+						"140"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/sauces/140",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Updated Sauce Name\",\r\n  \"manufacturer\": \"Updated Manufacturer\",\r\n  \"description\": \"Updated description\",\r\n  \"mainPepper\": \"Updated Pepper\",\r\n  \"imageUrl\": \"http://example.com/updated-image.jpg\",\r\n  \"heat\": 7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/sauces/140",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sauces",
+						"140"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/sauces",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 2422,\r\n  \"name\": \"SaucePOST2\",\r\n  \"manufacturer\": \"Hot Sauce Co\",\r\n  \"description\": \"very spicy sauce\",\r\n  \"mainPepper\": \"Habanero\",\r\n  \"imageUrl\": \"http://example.com/image.jpg\",\r\n  \"heat\": 8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/sauces",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sauces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/sauces/7568",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"SauceViaPost\",\r\n  \"manufacturer\": \"Hot Sauce Co\",\r\n  \"description\": \"spicy sauce\",\r\n  \"mainPepper\": \"Habanero\",\r\n  \"imageUrl\": \"http://example.com/image.jpg\",\r\n  \"heat\": 8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/sauces/9680",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sauces",
+						"9680"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
